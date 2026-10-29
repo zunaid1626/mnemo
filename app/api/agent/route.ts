@@ -58,11 +58,6 @@ type AgentAction =
     | SetTaskCompletedAction
     | UpdateTaskAction;
 
-const client = new OpenAI({
-    apiKey: process.env.NEBIUS_API_KEY,
-    baseURL: "https://api.tokenfactory.nebius.com/v1/",
-});
-
 const PRIORITIES: Priority[] = ["Low", "Medium", "High"];
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -420,6 +415,11 @@ Rules:
             typeof body.model === "string" && body.model.trim().length > 0
                 ? body.model.trim()
                 : (process.env.NEBIUS_MODEL || "nvidia/Nemotron-3-Ultra-550b-a55b");
+
+        const client = new OpenAI({
+            apiKey: process.env.NEBIUS_API_KEY,
+            baseURL: "https://api.tokenfactory.nebius.com/v1/",
+        });
 
         const completion = await client.chat.completions.create({
             model: selectedModel,

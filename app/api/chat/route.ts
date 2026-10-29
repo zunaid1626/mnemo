@@ -30,11 +30,6 @@ type Project = {
 
 type UnknownRecord = Record<string, unknown>;
 
-const client = new OpenAI({
-  apiKey: process.env.NEBIUS_API_KEY,
-  baseURL: "https://api.tokenfactory.nebius.com/v1/",
-});
-
 const STOP_WORDS = new Set([
   "a", "an", "and", "are", "as", "at", "be", "but", "by", "can",
   "could", "did", "do", "does", "for", "from", "had", "has", "have",
@@ -385,6 +380,11 @@ export async function POST(request: Request) {
       isRecord(body) && typeof body.model === "string" && body.model.trim().length > 0
         ? body.model.trim()
         : (process.env.NEBIUS_MODEL || "nvidia/Nemotron-3-Ultra-550b-a55b");
+
+    const client = new OpenAI({
+      apiKey: process.env.NEBIUS_API_KEY,
+      baseURL: "https://api.tokenfactory.nebius.com/v1/",
+    });
 
     const completion = await client.chat.completions.create({
       model: selectedModel,
