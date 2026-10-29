@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: mnemo-ai
+    runtime: node
+    plan: free
+    region: oregon
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20.18.0
+      - key: NEBIUS_MODEL
+        value: nvidia/Nemotron-3-Ultra-550b-a55b
+      - key: NEBIUS_API_KEY
+        sync: false
