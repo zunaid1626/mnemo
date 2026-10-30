@@ -1,8 +1,7 @@
 # 🧠 Mnemo — Sovereign Personal AI Workspace & Second Brain
 
 LINK:https://mnemo-qte3.onrender.com/overview
-
-> Built for the **Nebius x NVIDIA Global AI Hackathon** (Personal AI Track)  
+  
 > Powered by **NVIDIA Nemotron Models** on **Nebius Token Factory** & Next.js.
 
 ---
